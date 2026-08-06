@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onchain Mutineers 🏴‍☠️⚡ | Onchain Mutineers on Robinhood</title>
+    <meta name="description" content="A gamified, community-driven NFT project of 1,111 Onchain Mutineers on Robinhood. Stake, hold, vote, and claim the vault loot.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-text">ONCHAIN <span class="accent">MUTINEERS</span></span>
+            <span class="logo-subtext">⋆༺𓆩☠︎︎𓆪༻⋆</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="#about">The Crew</a>
+            <a href="#mechanics">Mechanics</a>
+            <a href="#rarity">Rarities</a>
+            <a href="#simulator">Simulator</a>
+            <a href="#staking">Staking</a>
+            <a href="#tokenomics">Booty</a>
+            <a href="#roadmap">Voyage Map</a>
+        </nav>
+        <div class="header-actions">
+            <a href="https://opensea.io" target="_blank" class="btn btn-nav">Mint on OpenSea</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <!-- Animated Background Canvas -->
+        <canvas id="digital-sea"></canvas>
+
+        <div class="hero-content">
+            <span class="badge-new">Robinhood Chain Exclusive</span>
+            <h1>Sail the digital seas. Plunder the <span class="gradient-text">vault</span>.</h1>
+            <p class="hero-desc">
+                Onchain Mutineers is a gamified collection of <strong>1,111 Onchain Mutineer NFTs</strong> featuring a weekly reward vault, dynamic storm sell taxes, and a strict holding streak mechanic.
+            </p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">CLAIM YOUR MINT</a>
+                <a href="#mechanics" class="btn btn-secondary">LEARN MECHANICS</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-val">1,111</span>
+                    <span class="stat-label">Total Mutineers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val">FREE</span>
+                    <span class="stat-label">Mint Cost</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val">ROBINHOOD</span>
+                    <span class="stat-label">Chain</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Live NFT Showcase Gallery -->
+        <div class="hero-gallery">
+            <div class="gallery-wrapper" id="dynamic-gallery-wrapper">
+                <!-- Dynamically populated via JS -->
+            </div>
+            <div class="gallery-controls">
+                <button class="ctrl-btn prev-btn" id="gallery-prev">&larr;</button>
+                <button class="ctrl-btn next-btn" id="gallery-next">&rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanics Section -->
+    <section class="mechanics" id="mechanics">
+        <div class="section-header">
+            <h2>The Mutineer Economy</h2>
+            <p>Three core mechanisms engineered to align incentives and reward long-term crew members.</p>
+        </div>
+        <div class="mechanics-grid">
+            <div class="mech-card">
+                <div class="mech-icon">🏦</div>
+                <h3>Dynamic Storm Taxes</h3>
+                <p>
+                    Every sell of the native utility token <strong>$BOOTY</strong> is taxed dynamically between <strong>2% to 8%</strong> based on market volatility (rough storm seas). 100% of these taxes feed the Plunder Vault.
+                </p>
+            </div>
+            <div class="mech-card">
+                <div class="mech-icon">🗳️</div>
+                <h3>The Saturday Mutiny</h3>
+                <p>
+                    Every Saturday, the Plunder Vault opens. NFT holders vote off-chain on how to distribute the loot. You choose: distribute 60% directly to the crew (<strong>Plunder</strong>) or use it to buyback & burn $BOOTY (<strong>Bury</strong>).
+                </p>
+            </div>
+            <div class="mech-card">
+                <div class="mech-icon">🪵</div>
+                <h3>Walk the Plank</h3>
+                <p>
+                    Holding your NFTs starts your <strong>Cabin Crew Streak</strong>. Your reward share and voting weight increases by <strong>+10% weekly</strong> up to a maximum of <strong>2.0x</strong> (at 10 weeks). If you transfer or sell ANY mutineer, you walk the plank—your streak resets to zero.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rarity Section -->
+    <section class="rarity-section" id="rarity">
+        <div class="section-header">
+            <h2>Collection Rarity</h2>
+            <p>A breakdown of the key visual traits across the 1,111 unique mutineers.</p>
+        </div>
+        <div class="rarity-grid">
+            <div class="rarity-card">
+                <h4>Backgrounds</h4>
+                <div class="rarity-row">
+                    <span>Solid Colors</span>
+                    <span class="rarity-pct">~12% - 15% each</span>
+                </div>
+                <div class="rarity-subtext">Deep Navy, Cyber Black, Neon Purple, Acid Green, Synth Red, Steel Gray, Ocean Muted</div>
+            </div>
+            <div class="rarity-card">
+                <h4>Mutineer Skins</h4>
+                <div class="rarity-row">
+                    <span>Chrome Cyber</span>
+                    <span class="rarity-pct">29.88%</span>
+                </div>
+                <div class="rarity-row">
+                    <span>Hologram Blue</span>
+                    <span class="rarity-pct">14.49%</span>
+                </div>
+                <div class="rarity-row">
+                    <span>Gold Plate Skin</span>
+                    <span class="rarity-pct">0.99% (Ultra-Rare)</span>
+                </div>
+            </div>
+            <div class="rarity-card">
+                <h4>Headwear</h4>
+                <div class="rarity-row">
+                    <span>Mutineer Bandana</span>
+                    <span class="rarity-pct">21.06%</span>
+                </div>
+                <div class="rarity-row">
+                    <span>Space Dome</span>
+                    <span class="rarity-pct">20.07%</span>
+                </div>
+                <div class="rarity-row">
+                    <span>Captain Tricorn</span>
+                    <span class="rarity-pct">0.99% (Ultra-Rare)</span>
+                </div>
+            </div>
+            <div class="rarity-card">
+                <h4>Companions (Pets)</h4>
+                <div class="rarity-row">
+                    <span>Cyber Drone</span>
+                    <span class="rarity-pct">49.59%</span>
+                </div>
+                <div class="rarity-row">
+                    <span>Robo Parrot</span>
+                    <span class="rarity-pct">2.70% (Rare)</span>
+                </div>
+                <div class="rarity-row">
+                    <span>No Companion</span>
+                    <span class="rarity-pct">47.70%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulator Section (Interactive) -->
+    <section class="simulator-section" id="simulator">
+        <div class="simulator-container">
+            <div class="sim-left">
+                <h2>Raid Calculator</h2>
+                <p>Simulate your holding streak and calculate your estimated share of the weekly Saturday Mutiny Plunder Vault.</p>
+                
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Mutineers Held</span>
+                        <span class="control-val" id="nfts-val">3</span>
+                    </div>
+                    <input type="range" id="nfts-range" min="1" max="25" value="3" class="slider">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Holding Streak (Weeks)</span>
+                        <span class="control-val" id="streak-val">5</span>
+                    </div>
+                    <input type="range" id="streak-range" min="0" max="10" value="5" class="slider">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Mock Vault Size ($BOOTY)</span>
+                        <span class="control-val" id="vault-val">100,000</span>
+                    </div>
+                    <input type="range" id="vault-range" min="10000" max="500000" step="10000" value="100000" class="slider">
+                </div>
+            </div>
+
+            <div class="sim-right">
+                <div class="sim-result-card">
+                    <div class="result-header">ESTIMATED WEEKLY POWER</div>
+                    <div class="result-main">
+                        <div class="multiplier-display" id="mult-result">1.5x</div>
+                        <div class="multiplier-sub">Streak Multiplier</div>
+                    </div>
+                    
+                    <div class="result-details">
+                        <div class="detail-row">
+                            <span>Base Vote Power</span>
+                            <span id="base-power">3 votes</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Weighted Vote Power</span>
+                            <span class="text-accent" id="weighted-power">4.5 votes</span>
+                        </div>
+                        <div class="detail-row highlight">
+                            <span>Est. Weekly Payout</span>
+                            <span class="text-glowing" id="est-payout">360 $BOOTY</span>
+                        </div>
+                    </div>
+                    <div class="result-tip">
+                        *Assuming a total voting crew weight of 1,250 votes. Smallest purses (wallets) get a "scurvy bonus" weight multiplier.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Staking Section -->
+    <section class="staking-section" id="staking">
+        <div class="section-header">
+            <h2>The Staking Cabin</h2>
+            <p>Lock your Mutineers in the galleon cabin to automate weekly voting claims and protect your Cabin Crew Streak.</p>
+        </div>
+        <div class="staking-container">
+            <div class="staking-left">
+                <h3>Galleon Staking Mechanics</h3>
+                <p>Deploying your Onchain Mutineers on active raids secures the digital seas and unlocks special benefits:</p>
+                <ul class="staking-mechanics-list">
+                    <li>
+                        <strong>🔒︎ Streak Lock Protection:</strong> Staking locks your NFTs in the smart contract, preventing accidental transfers or panic sells, keeping your 2.0x Cabin Crew Streak active.
+                    </li>
+                    <li>
+                        <strong>🤖 Automated Plunder Claims:</strong> Staked Mutineers automatically participate in the weekly Saturday Mutiny votes and distribute your $BOOTY shares directly to your wallet.
+                    </li>
+                    <li>
+                        <strong>🎁 Active Raid Bonus:</strong> Earn an additional <strong>+15% staking reward weight</strong> on top of your streak multiplier as long as your Mutineers are staked.
+                    </li>
+                </ul>
+            </div>
+            <div class="staking-right">
+                <div class="staking-dashboard-card">
+                    <div class="dash-header">MUTINEER CABIN DASHBOARD</div>
+                    <div class="dash-stats">
+                        <div class="dash-stat-row">
+                            <span>Staked Mutineers</span>
+                            <span class="text-accent">0 / --</span>
+                        </div>
+                        <div class="dash-stat-row">
+                            <span>Active Multiplier</span>
+                            <span class="text-accent">1.0x</span>
+                        </div>
+                        <div class="dash-stat-row">
+                            <span>Accumulated $BOOTY</span>
+                            <span class="text-glowing">0 $BOOTY</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-coming-soon" disabled>COMING SOON</button>
+                    <div class="dash-tip">
+                        *Staking will launch alongside the $BOOTY token and PlunderVault contract deployment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section class="tokenomics" id="tokenomics">
+        <div class="section-header">
+            <h2>The Booty Token ($BOOTY)</h2>
+            <p>The native fuel and reward currency of the Onchain Mutineers ecosystem.</p>
+        </div>
+        <div class="token-container">
+            <div class="token-meta">
+                <div class="meta-card">
+                    <h3>Token Details</h3>
+                    <div class="meta-row">
+                        <span class="meta-label">Name</span>
+                        <span class="meta-val">BootyToken</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Ticker</span>
+                        <span class="meta-val">$BOOTY</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Total Supply</span>
+                        <span class="meta-val">100,000,000</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Storm Tax Rate</span>
+                        <span class="meta-val">2.0% - 8.0%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="token-distribution">
+                <h3>Economic Flywheel</h3>
+                <p>
+                    Unlike standard inflationary rewards tokens, $BOOTY operates on a volatility-driven loop:
+                </p>
+                <ul class="flywheel-list">
+                    <li><strong>1. Trading Activity:</strong> High trading volatility increases the Dynamic Storm Tax.</li>
+                    <li><strong>2. Plunder Accumulation:</strong> Taxes accumulate as $BOOTY tokens inside the Plunder Vault.</li>
+                    <li><strong>3. Saturday Votes:</strong> If the crew votes to "Bury", tokens are burned, permanently reducing total supply. If they vote to "Plunder", tokens are re-distributed, incentivizing longer streaks.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <div class="section-header">
+            <h2>The Voyage Map</h2>
+            <p>Our strategic plan to plunder the seas and build the crew.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="time-card">
+                    <span class="time-phase">PHASE 1</span>
+                    <h3>Setting Sail ⛵</h3>
+                    <p>Launch the 1,111 unique Onchain Mutineers on OpenSea. Start the off-chain Cabin Crew Streak tracking script.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="time-card">
+                    <span class="time-phase">PHASE 2</span>
+                    <h3>Treasury Deployment 💰</h3>
+                    <p>Deploy the $BOOTY token and the PlunderVault treasury on Robinhood. Initialize AMM liquidity.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="time-card">
+                    <span class="time-phase">PHASE 3</span>
+                    <h3>The Weekly Raids 🏴‍☠️</h3>
+                    <p>Begin the Saturday Mutiny off-chain votes and trigger batch payout contract transactions directly to eligible crew members.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo">
+                <span class="logo-text">ONCHAIN <span class="accent">MUTINEERS</span></span>
+                <span class="logo-subtext">⋆༺𓆩☠︎︎𓆪༻⋆</span>
+            </div>
+            <p class="footer-copy">&copy; 2026 Onchain Mutineers. Built on Robinhood. All rights reserved.</p>
+            <div class="socials">
+                <a href="https://x.com" target="_blank">Twitter (X)</a>
+                <a href="https://opensea.io" target="_blank">OpenSea</a>
+                <a href="https://discord.com" target="_blank">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

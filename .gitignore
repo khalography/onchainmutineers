@@ -1,0 +1,11 @@
+# Virtual Environment
+.venv/
+__pycache__/
+*.pyc
+
+# Generated Assets (avoid pushing heavy build outputs)
+scripts/output/
+
+# OS/System files
+.DS_Store
+Thumbs.db
