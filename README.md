@@ -15,26 +15,9 @@
    - The remaining 40% of the vault goes to marketing/operations and a special reward pool for the rare "First Mates" and "Captains" (Legendary NFTs).
 5. **Walk the Plank (Streak Reset):** To prevent paper-hands, holding your Onchain Mutineer NFT increases your "Cabin Crew Streak" (up to 2x yield/voting weight after 10 weeks). If you transfer or sell **any** of your Onchain Mutineers NFTs, your streak resets to zero. This is tracked off-chain via blockchain event indexing.
 
----
+## 🌐 Official Links
 
-## 📁 Directory Structure
-
-```text
-onchainmutineers/
-├── README.md                  # Project overview and specifications
-├── contracts/                 # Smart contracts (Solidity)
-│   ├── BootyToken.sol         # ERC-20 token with dynamic fees
-│   └── PlunderVault.sol       # Treasury contract managing Saturday Mutiny distributions
-└── scripts/                   # Tooling and generator scripts
-    └── art_generator.py       # Programmatic layered art generator
-```
-
----
-
-## 🛠️ Getting Started
-
-1. **Set this folder as your active workspace:** Open the `onchainmutineers` directory in your IDE.
-2. **Populate Traits:** Place your transparent PNG layers into `scripts/traits/` folders.
-3. **Generate Art:** Run `python scripts/art_generator.py` to compile the 1,111 assets and metadata.
-4. **Compile & Deploy Contracts:** Use Hardhat or Foundry to deploy `BootyToken.sol` and `PlunderVault.sol` onto the Robinhood Chain.
-
+* **Official Website:** [onchainmutineers.site](https://www.onchainmutineers.site)
+* **OpenSea Collection:** [OpenSea](https://opensea.io)
+* **Community Discord:** [Discord](https://discord.com)
+* **Twitter / X:** [Twitter](https://x.com)
