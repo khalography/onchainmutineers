@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initGallery();
     initSimulator();
     initDigitalSea();
+    initNavigation();
 });
 
 /* ==========================================
@@ -228,4 +229,40 @@ function initDigitalSea() {
     }
     
     animate();
+}
+
+/* ==========================================
+   CLEAN URL SMOOTH NAVIGATION LOGIC
+   ========================================== */
+function initNavigation() {
+    // Intercept header, footer, and hero button anchor clicks
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: "smooth"
+                });
+                
+                // Update history to clean URL (e.g. /staking instead of #staking)
+                history.pushState(null, null, "/" + targetId);
+            }
+        });
+    });
+
+    // Handle initial page load scroll for clean paths (e.g. site.site/staking -> scrolls to #staking)
+    const path = window.location.pathname.substring(1);
+    if (path) {
+        const targetElement = document.getElementById(path);
+        if (targetElement) {
+            setTimeout(() => {
+                targetElement.scrollIntoView({ behavior: "smooth" });
+            }, 300);
+        }
+    }
 }
