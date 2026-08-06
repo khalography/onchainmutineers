@@ -1,10 +1,10 @@
-# Onchain Mutineers 🏴‍☠️⚡
+# Onchain Mutineers 🏴‍☠️
 
 **Onchain Mutineers** is a gamified, community-driven NFT project built on the Robinhood Chain (Arbitrum Orbit L2). Inspired by classic pirate lore with a high-contrast cyberpunk aesthetic, it features active economic game loops designed to align incentives between creators, collectors, and token traders.
 
 ---
 
-## 🚀 The Core Mechanics
+## The Core Mechanics
 
 1. **The Crew (NFTs):** 1,111 Onchain Mutineers. Minted via a public OpenSea Drop.
 2. **The Booty ($BOOTY):** The native ERC-20 utility token.
@@ -17,7 +17,6 @@
 
 ## 🌐 Official Links
 
-* **Official Website:** [onchainmutineers.site](https://www.onchainmutineers.site)
+* **Official Website:** [website](https://www.onchainmutineers.site)
 * **OpenSea Collection:** [OpenSea](https://opensea.io)
-* **Community Discord:** [Discord](https://discord.com)
 * **Twitter / X:** [Twitter](https://x.com)
