@@ -9,3 +9,12 @@ scripts/output/
 # OS/System files
 .DS_Store
 Thumbs.db
+
+# Discord local runner scripts
+scripts/setup_discord.py
+scripts/cleanup_discord.py
+scripts/reorder_discord.py
+scripts/populate_channels.py
+scripts/update_discord_welcome.py
+scripts/reorganize_welcome.py
+scripts/verification_bot.py
