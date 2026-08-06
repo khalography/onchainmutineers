@@ -1063,3 +1063,86 @@ h4 {
         text-align: center;
     }
 }
+
+/* ==========================================
+   AMBIENT WAVE AUDIO TOGGLE BUTTON STYLING
+   ========================================== */
+.audio-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    background: rgba(12, 14, 18, 0.85);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+}
+
+.audio-toggle-btn:hover {
+    border-color: var(--color-accent-cyan);
+    color: var(--color-accent-cyan);
+    box-shadow: 0 0 15px rgba(198, 255, 0, 0.2);
+}
+
+.audio-toggle-btn.active {
+    border-color: var(--color-accent-cyan);
+    color: var(--color-accent-cyan);
+}
+
+/* Sound Wave Bars Animation */
+.sound-waves {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    width: 16px;
+    height: 14px;
+}
+
+.sound-waves .bar {
+    width: 3px;
+    height: 100%;
+    background-color: var(--color-text-muted);
+    border-radius: 2px;
+    transition: var(--transition);
+    transform-origin: bottom;
+}
+
+/* When sound is unmuted (active), run bouncing animation */
+.audio-toggle-btn.active .sound-waves .bar {
+    background-color: var(--color-accent-cyan);
+    animation: bounce 0.8s ease-in-out infinite alternate;
+}
+
+.audio-toggle-btn.active .sound-waves .bar:nth-child(1) {
+    animation-delay: 0.1s;
+    height: 60%;
+}
+.audio-toggle-btn.active .sound-waves .bar:nth-child(2) {
+    animation-delay: 0.3s;
+    height: 100%;
+}
+.audio-toggle-btn.active .sound-waves .bar:nth-child(3) {
+    animation-delay: 0.5s;
+    height: 40%;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scaleY(0.3);
+    }
+    100% {
+        transform: scaleY(1.1);
+    }
+}

@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initSimulator();
     initDigitalSea();
     initNavigation();
+    initAudioToggle();
 });
 
 /* ==========================================
@@ -265,4 +266,109 @@ function initNavigation() {
             }, 300);
         }
     }
+}
+
+/* ==========================================
+   WEB AUDIO API DIGITAL OCEAN SYNTHESIZER
+   ========================================== */
+let audioCtx = null;
+let noiseNode = null;
+let filterNode = null;
+let gainNode = null;
+let lfoNode = null;
+let masterGainNode = null;
+let isAudioActive = false;
+
+function initOceanAudio() {
+    if (audioCtx) return;
+    
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContextClass();
+    
+    // 1. Generate White Noise (2-second buffer)
+    const bufferSize = audioCtx.sampleRate * 2;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+    }
+    
+    noiseNode = audioCtx.createBufferSource();
+    noiseNode.buffer = noiseBuffer;
+    noiseNode.loop = true;
+    
+    // 2. Bandpass Filter (gives the water swell texture)
+    filterNode = audioCtx.createBiquadFilter();
+    filterNode.type = 'bandpass';
+    filterNode.Q.value = 1.0;
+    filterNode.frequency.value = 450; // base center frequency
+    
+    // 3. Modulator Gain (LFO volume swings)
+    gainNode = audioCtx.createGain();
+    gainNode.gain.value = 0.08; // base gain
+    
+    // 4. Master Gain (for smooth fade-in and fade-out volume control)
+    masterGainNode = audioCtx.createGain();
+    masterGainNode.gain.value = 0.0; // starts silent
+    
+    // Connections
+    noiseNode.connect(filterNode);
+    filterNode.connect(gainNode);
+    gainNode.connect(masterGainNode);
+    masterGainNode.connect(audioCtx.destination);
+    
+    // 5. Low Frequency Oscillator (LFO)
+    // 0.15Hz frequency = 1 cycle every ~6.6 seconds (natural waves timing)
+    lfoNode = audioCtx.createOscillator();
+    lfoNode.type = 'sine';
+    lfoNode.frequency.value = 0.15;
+    
+    const lfoGainVol = audioCtx.createGain();
+    lfoGainVol.gain.value = 0.06; // volume swings from -0.06 to +0.06
+    
+    const lfoGainFreq = audioCtx.createGain();
+    lfoGainFreq.gain.value = 200; // frequency swings from -200Hz to +200Hz
+    
+    // Connections to LFO
+    lfoNode.connect(lfoGainVol);
+    lfoGainVol.connect(gainNode.gain);
+    
+    lfoNode.connect(lfoGainFreq);
+    lfoGainFreq.connect(filterNode.frequency);
+    
+    // Start playback nodes
+    noiseNode.start(0);
+    lfoNode.start(0);
+}
+
+function initAudioToggle() {
+    const toggleBtn = document.getElementById('audio-toggle');
+    if (!toggleBtn) return;
+    
+    const toggleText = toggleBtn.querySelector('.audio-text');
+    
+    toggleBtn.addEventListener('click', async () => {
+        if (!audioCtx) {
+            initOceanAudio();
+        }
+        
+        // Resume context if suspended (browser security restriction on autoplay)
+        if (audioCtx.state === 'suspended') {
+            await audioCtx.resume();
+        }
+        
+        if (isAudioActive) {
+            // Fade out sound in 1.0 second
+            masterGainNode.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 1.0);
+            toggleBtn.classList.remove('active');
+            if (toggleText) toggleText.textContent = 'AMBIENT OFF';
+            isAudioActive = false;
+        } else {
+            // Fade in sound in 1.5 seconds to 0.35 volume
+            masterGainNode.gain.linearRampToValueAtTime(0.35, audioCtx.currentTime + 1.5);
+            toggleBtn.classList.add('active');
+            if (toggleText) toggleText.textContent = 'AMBIENT ON';
+            isAudioActive = true;
+        }
+    });
 }
