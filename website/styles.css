@@ -239,6 +239,28 @@ h4 {
     color: var(--color-accent-cyan);
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.x-link-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-main);
+    transition: var(--transition);
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.x-link-header:hover {
+    color: var(--color-accent-cyan);
+    background: rgba(198, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(198, 255, 0, 0.15);
+}
+
 /* Hero Section */
 .hero {
     display: flex;
