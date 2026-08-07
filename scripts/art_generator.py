@@ -233,7 +233,7 @@ def generate_opensea_csv(combinations):
     print(f"\n[*] Compiling OpenSea Drop CSV metadata file at: {csv_path}...")
     
     # Headers matching OpenSea Drop specs
-    headers = ["tokenID", "name", "file_name", "external_url"]
+    headers = ["tokenID", "name", "description", "file_name", "external_url"]
     for layer in LAYERS_ORDER:
         display_layer_name = layer.split("_", 1)[1].replace("_", " ").title()
         headers.append(f"attributes[{display_layer_name}]")
@@ -247,6 +247,7 @@ def generate_opensea_csv(combinations):
             row = [
                 token_id,
                 f"{PROJECT_NAME} #{token_id}",
+                DESCRIPTION,
                 f"{token_id}.png",
                 "https://onchainmutineers.site"
             ]
