@@ -245,7 +245,7 @@ h4 {
     gap: 15px;
 }
 
-.x-link-header {
+.social-icon-header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -255,7 +255,7 @@ h4 {
     border-radius: 50%;
 }
 
-.x-link-header:hover {
+.social-icon-header:hover {
     color: var(--color-accent-cyan);
     background: rgba(198, 255, 0, 0.1);
     box-shadow: 0 0 10px rgba(198, 255, 0, 0.15);
