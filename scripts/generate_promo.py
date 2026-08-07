@@ -87,7 +87,7 @@ def create_promo_image():
     # Mint details list
     details = [
         {"label": "DATE:", "val": "TODAY @ 6:00 PM UTC", "color": WHITE},
-        {"label": "PRICE:", "val": "0.00055 ETH (100 FREE)", "color": LIME},
+        {"label": "PRICE:", "val": "FREE", "color": LIME},
         {"label": "PLATFORM:", "val": "MINTING ON OPENSEA", "color": CYAN}
     ]
     
