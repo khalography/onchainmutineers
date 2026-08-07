@@ -31,9 +31,9 @@ def create_promo_image():
     # 3. Load and Draw NFT Cards on the Left Side
     assets_dir = "website/assets"
     nfts_to_show = ["nft_10.png", "nft_42.png"]
-    nft_x_positions = [70, 340]
-    nft_y = 200
-    nft_size = 240
+    nft_x_positions = [60, 370]
+    nft_y = 160
+    nft_size = 280
     
     for idx, nft_name in enumerate(nfts_to_show):
         nft_path = os.path.join(assets_dir, nft_name)
@@ -63,25 +63,26 @@ def create_promo_image():
             w = draw.textlength(label_text, font=font_label)
             draw.text((x_pos + (nft_size - w)/2, nft_y + nft_size + 14), label_text, fill=LIME, font=font_label)
             
-    # 4. Draw Typography on the Right Side (x=620 onwards)
+    # 4. Draw Typography on the Right Side (x=680 onwards)
     try:
-        font_title = ImageFont.truetype("arial.ttf", 46)
-        font_subtitle = ImageFont.truetype("arial.ttf", 26)
+        font_title = ImageFont.truetype("arial.ttf", 40)
+        font_subtitle = ImageFont.truetype("arial.ttf", 24)
         font_detail_label = ImageFont.truetype("arial.ttf", 20)
-        font_detail_val = ImageFont.truetype("arial.ttf", 24)
-        font_tagline = ImageFont.truetype("arial.ttf", 22)
+        font_detail_val = ImageFont.truetype("arial.ttf", 22)
+        font_tagline = ImageFont.truetype("arial.ttf", 20)
     except:
         font_title = font_subtitle = font_detail_label = font_detail_val = font_tagline = ImageFont.load_default()
         
-    start_x = 640
+    start_x = 680
     
-    # Title
-    draw.text((start_x, 80), "ONCHAIN MUTINEERS", fill=LIME, font=font_title)
-    # Divider line
-    draw.line([start_x, 140, 1130, 140], fill=CYAN, width=2)
+    # Title aligned with card top (y=160)
+    draw.text((start_x, 160), "ONCHAIN MUTINEERS", fill=LIME, font=font_title)
     
     # Subtitle
-    draw.text((start_x, 160), "OFFICIAL MINT DETAILS", fill=CYAN, font=font_subtitle)
+    draw.text((start_x, 215), "OFFICIAL MINT DETAILS", fill=CYAN, font=font_subtitle)
+    
+    # Divider line
+    draw.line([start_x, 255, 1140, 255], fill=CYAN, width=2)
     
     # Mint details list
     details = [
@@ -90,16 +91,16 @@ def create_promo_image():
         {"label": "PLATFORM:", "val": "MINTING ON OPENSEA", "color": CYAN}
     ]
     
-    current_y = 220
+    current_y = 275
     for item in details:
         # Draw label in muted gray
         draw.text((start_x, current_y), item["label"], fill=MUTED, font=font_detail_label)
-        # Draw value in custom color next to it
-        draw.text((start_x + 130, current_y - 3), item["val"], fill=item["color"], font=font_detail_val)
-        current_y += 55
+        # Draw value in custom color next to it (aligned in columns at x=840)
+        draw.text((start_x + 160, current_y - 2), item["val"], fill=item["color"], font=font_detail_val)
+        current_y += 50
         
-    # Bottom Tagline
-    draw.text((start_x, 430), "Sail the digital seas. Plunder the vault.", fill=LIME, font=font_tagline)
+    # Bottom Tagline aligned with the bottom of card labels (y=460)
+    draw.text((start_x, 460), "Sail the digital seas. Plunder the vault.", fill=LIME, font=font_tagline)
     
     # Save Image
     output_path = "website/assets/twitter_promo.png"

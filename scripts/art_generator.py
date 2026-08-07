@@ -8,7 +8,13 @@ from PIL import Image
 # ==========================================
 TOTAL_SUPPLY = 1111  # Number of unique NFTs to generate
 PROJECT_NAME = "Onchain Mutineer"
-DESCRIPTION = "Sail the digital seas, plunder the protocols, share the booty."
+DESCRIPTION = """1,111 pixel mutineers sailing the digital seas of the Robinhood chain.
+
+The old financial world lies in ruins. Out here on the decentralized waves, only the crew matters. Onchain Mutineers is a gamified, community-driven NFT collection featuring a weekly reward vault, dynamic storm sell taxes, and a strict holding streak mechanic.
+
+Stake your Mutineer, build your holding multiplier, and join the Saturday Crew Votes to decide our next heist. Will we bury the loot to burn the supply, or plunder the vault to reward the loyal?
+
+The choice is yours. Welcome to the crew. 🏴☠️"""
 BASE_IMAGE_URI = "ipfs://QmYourCollectionHashHere/"  # Replace with your IPFS hash after uploading
 
 # The order of these directories determines the layering order (bottom to top)
@@ -220,6 +226,37 @@ def print_rarity_report(rarity_stats, total):
     print(f"\n[+] Generation completed! Files saved in: {OUTPUT_DIR}")
     print(f"[+] Rarity distribution report saved to: {report_path}\n")
 
+def generate_opensea_csv(combinations):
+    """Generates the OpenSea Drop metadata-file.csv."""
+    import csv
+    csv_path = os.path.join(OUTPUT_DIR, "metadata-file.csv")
+    print(f"\n[*] Compiling OpenSea Drop CSV metadata file at: {csv_path}...")
+    
+    # Headers matching OpenSea Drop specs
+    headers = ["tokenID", "name", "description", "file_name", "external_url"]
+    for layer in LAYERS_ORDER:
+        display_layer_name = layer.split("_", 1)[1].replace("_", " ").title()
+        headers.append(f"attributes[{display_layer_name}]")
+        
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(headers)
+        
+        for idx, combo in enumerate(combinations):
+            token_id = idx + 1
+            row = [
+                token_id,
+                f"{PROJECT_NAME} #{token_id}",
+                DESCRIPTION,
+                f"{token_id}.png",
+                "https://onchainmutineers.site"
+            ]
+            for layer in LAYERS_ORDER:
+                row.append(combo[layer]["trait_name"])
+            writer.writerow(row)
+            
+    print(f"[+] OpenSea Drop CSV metadata file successfully compiled!")
+
 def main():
     setup_directories()
     traits_data = parse_traits()
@@ -228,6 +265,7 @@ def main():
         combinations = generate_unique_combinations(traits_data, TOTAL_SUPPLY)
         stats = build_nft_images_and_metadata(combinations)
         print_rarity_report(stats, len(combinations))
+        generate_opensea_csv(combinations)
     except Exception as e:
         print(f"\n[Error] Failed to generate collection: {e}")
         print("Please check that all trait PNGs are matching sizes and RGBA transparent format.")
