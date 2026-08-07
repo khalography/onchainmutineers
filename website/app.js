@@ -250,8 +250,9 @@ function initNavigation() {
                     behavior: "smooth"
                 });
                 
-                // Update history to clean URL (e.g. /staking instead of #staking)
-                history.pushState(null, null, "/" + targetId);
+                // Update history to clean URL (e.g. / for home/about, or /staking)
+                const newPath = targetId === "about" ? "/" : "/" + targetId;
+                history.pushState(null, null, newPath);
             }
         });
     });
