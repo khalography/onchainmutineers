@@ -36,22 +36,33 @@ async def on_ready():
         await client.close()
         return
         
-    # 2. Find holder-verify channel
+    # 2. Find channels
     verify_channel = discord.utils.get(guild.text_channels, name="holder-verify")
-    if not verify_channel:
-        print("Error: holder-verify channel not found.")
-        await client.close()
-        return
-        
-    # 3. Add Permission Overwrites for Vulcan
-    overwrite = verify_channel.overwrites_for(vulcan_role)
-    overwrite.read_messages = True
-    overwrite.send_messages = True
-    overwrite.embed_links = True
-    overwrite.attach_files = True
+    mod_channel = discord.utils.get(guild.text_channels, name="mod-chat")
     
-    await verify_channel.set_permissions(vulcan_role, overwrite=overwrite)
-    print(f"Successfully granted Vulcan permissions in #{verify_channel.name}!")
+    # 3. Add Permission Overwrites for Vulcan in public verify channel
+    if verify_channel:
+        overwrite = verify_channel.overwrites_for(vulcan_role)
+        overwrite.read_messages = True
+        overwrite.send_messages = True
+        overwrite.embed_links = True
+        overwrite.attach_files = True
+        await verify_channel.set_permissions(vulcan_role, overwrite=overwrite)
+        print(f"Successfully granted Vulcan permissions in #{verify_channel.name}!")
+    else:
+        print("Warning: holder-verify channel not found.")
+        
+    # 4. Add Permission Overwrites for Vulcan in private mod-chat channel
+    if mod_channel:
+        overwrite = mod_channel.overwrites_for(vulcan_role)
+        overwrite.read_messages = True
+        overwrite.send_messages = True
+        overwrite.embed_links = True
+        overwrite.attach_files = True
+        await mod_channel.set_permissions(vulcan_role, overwrite=overwrite)
+        print(f"Successfully granted Vulcan permissions in #{mod_channel.name}!")
+    else:
+        print("Warning: mod-chat channel not found.")
     
     await client.close()
 
